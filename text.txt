@@ -1,0 +1,3 @@
+tampilah di views
+logika di controllers
+database di models
