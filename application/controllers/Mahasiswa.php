@@ -5,7 +5,7 @@ class Mahasiswa extends CI_Controller {
 
   // Atribut
   public $nim = '1930511075';
-  public $nama = 'Ikram Maulana';
+  public $nama = 'Ikram Malana';
 
   // Constructor
   public function __construct()
