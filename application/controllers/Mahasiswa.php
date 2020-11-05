@@ -49,7 +49,11 @@ class Mahasiswa extends CI_Controller {
     ];
 
     // Passing Data ke views
-    $this->load->view('index_mahasiswa', $data2);
+    // 5 November 2020
+    $this->load->view('layout/header', $data2); //static
+    $this->load->view('layout/navbar', $data2); // static
+    $this->load->view('index_mahasiswa', $data2); //dinamis
+    $this->load->view('layout/footer', $data2); // static
     // ==========================================
   }
 
@@ -87,7 +91,10 @@ class Mahasiswa extends CI_Controller {
     ];
 
     // yang kedua($data) itu untuk lempar variable
-    $this->load->view('detail_mahasiswa', $data);
+    $this->load->view('layout/header', $data); //static
+    $this->load->view('layout/navbar', $data); // static
+    $this->load->view('detail_mahasiswa', $data); //dinamis
+    $this->load->view('layout/footer', $data); // static
   }
 
   public function form_add()
@@ -98,7 +105,14 @@ class Mahasiswa extends CI_Controller {
     $this->form_validation->set_rules('nama', 'Nama', 'required');
 
     if($this->form_validation->run() === false){
-      $this->load->view('form_add_mahasiswa');
+
+      $data = [
+          'title' => 'Form Tambah Mahasiswa'
+      ];
+      $this->load->view('layout/header', $data); //static
+      $this->load->view('layout/navbar', $data); // static
+      $this->load->view('form_add_mahasiswa', $data); //dinamis
+      $this->load->view('layout/footer', $data); // static
     } else {
       // Ketika sesuai aturan validasi
       $nim = $this->input->post['nim'];

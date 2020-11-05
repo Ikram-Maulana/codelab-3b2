@@ -1,0 +1,26 @@
+#pertmuan 6
+## templatung UI
+1. Header
+2. Navbar
+3. Sidebar
+4. content
+5. Footer
+
+Controller -> DAshboard
+file view:
+1. layout:
+  - Header
+  - Navbar
+  - Footer
+2. Dashboard
+
+## Integrasi framework UI
+1. Bootstrap [x]
+2. Materialize css(google)
+3. Tailwind css
+4. Bulma css
+5. Semantic css
+6. dll
+
+# site_url -> sampe index.php
+# base_url -> ga sampe index.php

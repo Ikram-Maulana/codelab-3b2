@@ -40,6 +40,11 @@ class Mahasiswa_model extends CI_Model {
         'id' => 3,
         'nim' => '1930511000',
         'nama' => 'Hamba Sahaya'
+      ],
+      [
+        'id' => 4, 
+        'nim' => '202020200',
+        'nama' => 'maba'
       ]
       ];
   }
