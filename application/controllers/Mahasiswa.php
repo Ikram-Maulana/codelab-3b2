@@ -8,6 +8,7 @@ class Mahasiswa extends CI_Controller {
   public $nama = 'Ikram Maulana';
 
   // Constructor
+  // agar tidak berulang" menuliskan this load yang sama 
   public function __construct()
   {
     parent::__construct();
@@ -39,22 +40,23 @@ class Mahasiswa extends CI_Controller {
 
     // ========= 16 Oktober 2020 =================
     // Menggunakan method get_all()
-    $mahasiswa = $this->Mahasiswa_model->get_all();
+    $mahasiswa = $this->Mahasiswa_model->get_all()
+    ->result_array();
 
-    // Deklarasi variabel untuk menampung
-    // Data Mahasiswa
+    // // Deklarasi variabel untuk menampung
+    // // Data Mahasiswa
     $data2 = [
       'data_mahasiswa' => $mahasiswa,
       'title' => "Data Mahasiswa"
     ];
 
-    // Passing Data ke views
-    // 5 November 2020
+    // // Passing Data ke views
+    // // 5 November 2020
     $this->load->view('layout/header', $data2); //static
     $this->load->view('layout/navbar', $data2); // static
     $this->load->view('index_mahasiswa', $data2); //dinamis
     $this->load->view('layout/footer', $data2); // static
-    // ==========================================
+    // // ==========================================
   }
 
   public function tampil_data()
@@ -78,15 +80,16 @@ class Mahasiswa extends CI_Controller {
   //   $this->load->view('detail_mahasiswa', $data);
   // }
 
-  public function detail($param_nim, $param_nama)
+  public function detail($param_id)
   {
-    $nim = $param_nim;
-    // Raw url decode buat ngilangin %20 jadi spasi
-    $nama = urldecode($param_nama);
+    // $nim = $param_nim;
+    // // Raw url decode buat ngilangin %20 jadi spasi
+    // $nama = urldecode($param_nama);
+    $mahasiswa = $this->Mahasiswa_model->get_by_id($param_id); // Mengambil data berdasarkan id
     
     $data = [
-      'nim_mahasiswa' => $nim,
-      'nama_mahasiswa' => $nama,
+      'nim_mahasiswa' => $mahasiswa['nim'],
+      'nama_mahasiswa' => $mahasiswa['nama'],
       'title' => 'Data Mahasiswa'
     ];
 

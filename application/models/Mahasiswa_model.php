@@ -2,11 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mahasiswa_model extends CI_Model {
-  
 
   // Properti / atribut
   private $nim = '1930511075';
   private $nama = 'Ikram Maulana';
+
+  public function __construct()
+  {
+    parent::__construct();
+    $this->load->database();
+  } 
 
   // Ambil NIM
   public function get_nim()
@@ -25,28 +30,18 @@ class Mahasiswa_model extends CI_Model {
   // masih berupa array
   public function get_all()
   {
-    return [
-      [
-        'id' => 1,
-        'nim' => '1930511075',
-        'nama' => 'Ikram Maulana'
-      ],
-      [
-        'id' => 2,
-        'nim' => '1930611140',
-        'nama' => 'Siapa ya'
-      ],
-      [
-        'id' => 3,
-        'nim' => '1930511000',
-        'nama' => 'Hamba Sahaya'
-      ],
-      [
-        'id' => 4, 
-        'nim' => '202020200',
-        'nama' => 'maba'
-      ]
-      ];
+    $query = $this->db->get('tbl_mahasiswa');
+    return $query;
+  }
+
+  public function get_by_id($id)
+  {
+    // SELECT * FROM tbl_mahasiswa WHERE id='1
+    $this->db->where('id', $id);
+    $this->db->from('tbl_mahasiswa');
+
+    $query = $this->db->get();
+    return $query->row_array(); // return array
   }
 
 } // End of class Mahasiswa_model
