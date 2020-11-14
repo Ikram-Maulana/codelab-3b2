@@ -1,0 +1,17 @@
+Todo List:
+1. Membuat database
+2. buat table -> data tbl_mahasiswa
+3. insert data -> sample data
+4. atur konfigurasi database project
+5. atur library database
+6. coding untuk fitur menampilkan data dari datavase
+
+#select dta
+$this->db->get('tbl_mahasiswa)
+
+#array
+$query->result_array(); // array
+
+#object
+$query->result();
+
