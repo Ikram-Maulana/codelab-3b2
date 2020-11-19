@@ -5,6 +5,11 @@
     <div class="card-body">
       <a href="<? echo site_url('mahasiswa/form_add'); ?>">Tambah Data</a>
 
+      <!-- notifikasi -->
+      <?php if($this->session->flashdata('notifikasi')) : ?>
+      <div class="alert alert -success"><?php echo $this->session->flashdata('notifikasi'); ?></div>
+      <?php endif; ?>
+
       <table class="table">
         <tr class="text-center">
           <td>ID</td>

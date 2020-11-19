@@ -27,6 +27,7 @@ class Mahasiswa extends CI_Controller {
     $this->load->helper(array('url', 'form'));
     // ====================
     
+    $this->load->library(['session', 'form_validation']);
 
   }
 
@@ -117,9 +118,34 @@ class Mahasiswa extends CI_Controller {
       $this->load->view('form_add_mahasiswa', $data); //dinamis
       $this->load->view('layout/footer', $data); // static
     } else {
-      // Ketika sesuai aturan validasi
-      $nim = $this->input->post['nim'];
-      $nim = $this->input->post['nim'];
+      // Ketika inputan sesuai
+      $nim = $this->input->post('nim');
+      $nama = $this->input->post('nama');
+
+      // TAmpung di $mahasiswa
+      $mahasiswa =
+      [
+        'nim' => $nim,
+        'nama' => $nama
+      ];
+
+      // insert data
+      $save = $this->Mahasiswa_model ->save($mahasiswa);
+
+      if ($save) {
+        // set notifikasi
+        $this->session->set_flashdata('notifikasi', 'Data berhasil disimpan');
+
+        // Alihkan ke halaman index
+        redirect('mahasiswa');
+      } else {
+        $this->session->set_flashdata('notifikasi', 'Data gagal disimpan');
+
+        // alihkan ke halaman form
+        redirect('mahasiswa/form_add');
+      }
+
+
       // <br>
 
       // echo $nim;

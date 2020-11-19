@@ -1,5 +1,10 @@
 <h2><?php echo $title; ?></h2>
 
+<!-- notifikasi -->
+<?php if($this->session->flashdata('notifikasi')) : ?>
+<div class="alert alert -success"><?php echo $this->session->flashdata('notifikasi'); ?></div>
+<?php endif; ?>
+
 <?php echo form_open('mahasiswa/form_add'); ?>
 <label for="nim">NIM</label>
 <br>

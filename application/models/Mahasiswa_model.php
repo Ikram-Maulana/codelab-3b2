@@ -44,4 +44,9 @@ class Mahasiswa_model extends CI_Model {
     return $query->row_array(); // return array
   }
 
+  public function save($data)
+  {
+return $this->db->insert('tbl_mahasiswa', $data);
+  }
+
 } // End of class Mahasiswa_model
