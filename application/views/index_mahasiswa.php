@@ -3,11 +3,11 @@
 
   <div class="card">
     <div class="card-body">
-      <a href="<? echo site_url('mahasiswa/form_add'); ?>">Tambah Data</a>
+      <a href="<? echo site_url('mahasiswa/form_add'); ?>" class="btn btn-success">Tambah Data</a>
 
       <!-- notifikasi -->
       <?php if($this->session->flashdata('notifikasi')) : ?>
-      <div class="alert alert -success"><?php echo $this->session->flashdata('notifikasi'); ?></div>
+      <div class="alert alert-success"><?php echo $this->session->flashdata('notifikasi'); ?></div>
       <?php endif; ?>
 
       <table class="table">
@@ -27,9 +27,10 @@
           <!-- kalau base url ga manggil index.php, biasanya digunakan ketika udah pake css atau js atau gambar, pdf dll  -->
           <!-- ====================================================================================== -->
           <!-- codelab-3b2/index.php/Mahasiswa/detail/1930511075(misal)/ikram maulana(misal) -->
-          <td><a href="<?php echo site_url('Mahasiswa/detail/' . $row['id']);?>">Detail</a> |
-            Edit |
-            Delete</td>
+          <td><a href="<?php echo site_url('Mahasiswa/detail/' . $row['id']);?>" class="btn btn-success">Detail</a>
+            <a href="<?php echo site_url('Mahasiswa/form_edit/' . $row['id']);?>" class="btn btn-info">Edit</a>
+            <a href="#" class="btn btn-danger">Delete</a>
+          </td>
         </tr>
         <?php endforeach; ?>
 

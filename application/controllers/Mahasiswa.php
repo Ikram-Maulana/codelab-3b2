@@ -160,4 +160,49 @@ class Mahasiswa extends CI_Controller {
     }
   }
 
+  public function form_edit($id_mahasiswa = '')
+  {
+    if (empty($id_mahasiswa)){
+      redirect('mahasiswa', 'refresh');
+    }
+
+    $mahasiswa = $this->Mahasiswa_model->get_by_id($id_mahasiswa);
+
+    // cek data
+
+    // validasi
+    $this->form_validation->set_rules('nim', 'NIM', 'required');
+    $this->form_validation->set_rules('nama', 'Nama', 'required');
+
+    if ($this->form_validation->run() === false){
+      $data = [
+        'title' => "Form Edit Data",
+        'mahasiswa' => $mahasiswa
+      ];
+
+      $this->load->view('layout/header', $data);
+      $this->load->view('layout/navbar', $data);
+      $this->load->view('form_edit_mahasiswa', $data);
+      $this->load->view('layout/footer', $data);
+    } else {
+      // inisiasi variable
+      $nim = $this->input->post('nim');
+      $nama = $this->input->post('nama');
+      $id = $this->input->post('id');
+
+      $mahasiswa = [
+        'nim' => $nim,
+        'nama' => $nama
+      ];
+
+      // proses update
+      $update = $this->Mahasiswa_model->update($mahasiswa, $id);
+
+      // notifikasi
+      $this->session->set_flashdata('notifikasi', 'Data Berhasil Ditambahkan');
+
+      redirect('mahasiswa', 'refresh');
+    }
+  } // edit of form_edit()
+  
 } // End class Mahasiswa
