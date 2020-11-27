@@ -199,9 +199,14 @@ class Mahasiswa extends CI_Controller {
       $update = $this->Mahasiswa_model->update($mahasiswa, $id);
 
       // notifikasi
-      $this->session->set_flashdata('notifikasi', 'Data Berhasil Ditambahkan');
+      if ($update){
+        $this->session->set_flashdata('notifikasi', 'Data Berhasil Disimpan');
+        redirect('mahasiswa', 'refresh');
+      } else {
+        $this->session->set_flashdata('notifikasi', 'Data Gagal Disimpan');
+        redirect('mahasiswa/form_edit', 'refresh');
+      }
 
-      redirect('mahasiswa', 'refresh');
     }
   } // edit of form_edit()
   

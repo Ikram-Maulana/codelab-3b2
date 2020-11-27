@@ -4,6 +4,11 @@
   <?php echo form_open('mahasiswa/form_edit/' . $mahasiswa['id']); ?>
   <input type="hidden" name="id" value="<?php echo $mahasiswa['id']; ?>">
 
+  <!-- notifikasi -->
+  <?php if($this->session->flashdata('notifikasi')) : ?>
+  <div class="alert alert -success"><?php echo $this->session->flashdata('notifikasi'); ?></div>
+  <?php endif; ?>
+
   <div class="form-group">
     <label for="nim">NIM</label>
     <input type="text" name="nim" class="form-control" value="<?php echo $mahasiswa['nim'];?>">
