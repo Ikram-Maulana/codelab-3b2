@@ -17,10 +17,12 @@
           <td>Nama</td>
           <td>Action</td>
         </tr>
-        <?php if (is_array($data_mahasiswa) && count($data_mahasiswa) > 0) : ?>
+        <?php 
+        $no = 1;
+        if (is_array($data_mahasiswa) && count($data_mahasiswa) > 0) : ?>
         <?php foreach ($data_mahasiswa as $row) : ?>
         <tr align="center">
-          <td><?php echo $row['id']; ?></td>
+          <td><?php echo $no++; ?></td>
           <td><?php echo $row['nim']; ?></td>
           <td><?php echo $row['nama']; ?></td>
           <!-- site_utl langsung manggil index.php -->
@@ -29,7 +31,8 @@
           <!-- codelab-3b2/index.php/Mahasiswa/detail/1930511075(misal)/ikram maulana(misal) -->
           <td><a href="<?php echo site_url('Mahasiswa/detail/' . $row['id']);?>" class="btn btn-success">Detail</a>
             <a href="<?php echo site_url('Mahasiswa/form_edit/' . $row['id']);?>" class="btn btn-info">Edit</a>
-            <a href="#" class="btn btn-danger">Delete</a>
+            <a href="<?php echo site_url('Mahasiswa/delete/' . $row['id']);?>"
+              onclick="return confirm('Apakah kamu yakin?');" class="btn btn-danger">Delete</a>
           </td>
         </tr>
         <?php endforeach; ?>

@@ -123,14 +123,14 @@ class Mahasiswa extends CI_Controller {
       $nama = $this->input->post('nama');
 
       // TAmpung di $mahasiswa
-      $mahasiswa =
+      $data =
       [
         'nim' => $nim,
         'nama' => $nama
       ];
 
       // insert data
-      $save = $this->Mahasiswa_model ->save($mahasiswa);
+      $save = $this->Mahasiswa_model->save($data);
 
       if ($save) {
         // set notifikasi
@@ -209,5 +209,29 @@ class Mahasiswa extends CI_Controller {
 
     }
   } // edit of form_edit()
+
+  public function delete($id = '')
+{
+if (empty($id)) {
+redirect('Mahasiswa', 'refresh');
+}
+// hapus
+$delete = $this->Mahasiswa_model->delete($id);
+if ($delete) {
+// set notifikasi
+$this->session->set_flashdata('notifikasi', 'Data berhasil
+
+dihapus');
+
+redirect('Mahasiswa', 'refresh');
+} else {
+// set notifikasi
+$this->session->set_flashdata('notifikasi', 'Data gagal
+
+dihapus');
+
+redirect('Mahasiswa', 'refresh');
+}
+}
   
 } // End class Mahasiswa
